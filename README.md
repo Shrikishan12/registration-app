@@ -1,8 +1,7 @@
 # AWS Load-Balanced Registration Application with Auto Scaling and DynamoDB
 
-# AWS Load-Balanced Registration Application
-
 This project demonstrates a production-style AWS architecture for a web-based registration application. The application is deployed on EC2 instances behind an Application Load Balancer, uses Auto Scaling for high availability, and stores user registration data securely in Amazon DynamoDB. DNS routing is handled using Amazon Route 53.
+
 ---
 
 ## Architecture
@@ -98,11 +97,40 @@ This ensures high availability and automatic recovery.
 
 ## Deployment Details
 
-EC2 instances are launched using a Launch Template with a user-data script that:
-- Installs required packages
+EC2 instances are launched using a Launch Template with a user-data script.  
+This script bootstraps each instance automatically at launch.
+
+### Instance Bootstrapping
+
+The user-data script performs the following actions:
+- Installs required system packages
 - Clones the GitHub repository
 - Installs Python dependencies
-- Starts the application using Gunicorn in the background
+- Starts the Flask application using Gunicorn in the background
+
+```bash
+#!/bin/bash
+
+# Update system
+yum update -y
+
+# Install required packages
+yum install -y python3 python3-pip git
+
+# Upgrade pip
+python3 -m pip install --upgrade pip
+
+# Clone application repository
+cd /home/ec2-user
+git clone https://github.com/Shrikishan12/registration-app.git
+cd registration-app
+
+# Install Python dependencies
+python3 -m pip install -r requirements.txt
+
+# Run application using Gunicorn
+nohup gunicorn -b 0.0.0.0:5000 app:app &
+```
 
 ---
 
