@@ -118,4 +118,3 @@ This project demonstrates real-world AWS deployment practices including load bal
 - Enable CloudWatch logging and alarms
 - Convert Gunicorn process to systemd service
 - Implement CI/CD pipeline
-```
