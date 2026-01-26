@@ -119,6 +119,3 @@ This project demonstrates real-world AWS deployment practices including load bal
 - Convert Gunicorn process to systemd service
 - Implement CI/CD pipeline
 ```
-
----
-
