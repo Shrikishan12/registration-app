@@ -5,10 +5,12 @@ This project demonstrates a production-style AWS architecture for a web-based re
 ---
 
 ## Architecture
+![Architecture](screenshots/architecture.png)
+
 
 User  
 → Route 53 (Custom Domain)  
-→ Application Load Balancer (HTTPS)  
+→ Application Load Balancer
 → Auto Scaling Group  
 → EC2 (Flask Application)  
 → DynamoDB
@@ -136,7 +138,7 @@ nohup gunicorn -b 0.0.0.0:5000 app:app &
 
 ## Outcome
 
-This project demonstrates real-world AWS deployment practices including load balancing, auto scaling, secure IAM usage, DNS routing, HTTPS configuration, and NoSQL database integration.
+This project demonstrates real-world AWS deployment practices including load balancing, auto scaling, secure IAM usage, DNS routing, and NoSQL database integration.
 
 ---
 
